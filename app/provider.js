@@ -10,7 +10,6 @@ const Provider = ({ children }) => {
 
   const [userDetail, setUserDetail] = React.useState();
 
-  
   useEffect(() => {
     if (typeof window !== "undefined") {
       const storage = window.localStorage.getItem("userDetail");
@@ -29,7 +28,6 @@ const Provider = ({ children }) => {
           {children}
         </UserDetailContext.Provider>
       </GoogleOAuthProvider>
-      ;
     </ConvexProvider>
   );
 };

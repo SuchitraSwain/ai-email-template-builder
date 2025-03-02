@@ -16,7 +16,7 @@ const Header = () => {
         {userDetail?.email ? (
           <div className="flex gap-3 items-center">
             <Link href="/dashboard">
-              <Button onClick>Dashboard</Button>
+              <Button>Dashboard</Button>
             </Link>
             <Image
               src={userDetail?.picture}
