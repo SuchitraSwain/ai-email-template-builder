@@ -17,6 +17,7 @@ import {
   CaseUpper,
 } from "lucide-react";
 import DropdownField from "./Settings/DropdownField";
+import ImagePreview from "./Settings/ImagePreview";
 
 const TextAlignOptions = [
   {
@@ -89,9 +90,36 @@ const Settings = () => {
     setSelectedElement(updatedData);
   };
 
+  const onHandleOuterStyleChange = (fieldName, fieldValue) => {
+    let updatedData = {
+      ...selectedElement,
+      layout: {
+        ...selectedElement.layout,
+        [selectedElement.index]: {
+          ...selectedElement.layout[selectedElement.index],
+          outerStyle: {
+            ...selectedElement?.layout[selectedElement?.index].outerStyle,
+            [fieldName]: fieldValue,
+          },
+        },
+      },
+    };
+
+    setSelectedElement(updatedData);
+  };
+
   return (
     <div className="p-5 flex flex-col gap-4">
       <h2 className="font-bold text-xl">Settings</h2>
+      {element?.imageUrl && (
+        <ImagePreview
+          label="Border Radius"
+          value={element?.imageUrl}
+          onhandleInputChange={(newValue) =>
+            onhandleInputChange("imageUrl", newValue)
+          }
+        />
+      )}
       {element?.content && (
         <InputField
           label={"Content"}
@@ -190,6 +218,16 @@ const Settings = () => {
         />
       )}
 
+      {element?.style?.margin && (
+        <InputStyleField
+          label="Margin"
+          value={element?.style?.margin}
+          onhandleInputChange={(newValue) =>
+            onHandleStyleChange("margin", newValue)
+          }
+        />
+      )}
+
       {element?.style?.borderRadius && (
         <SliderField
           label="Border Radius"
@@ -224,6 +262,29 @@ const Settings = () => {
           }
         />
       )}
+
+      <div>
+        <h2 className="font-bold text-xl">Outer Style</h2>
+        {element?.outerStyle?.backgroundColor && (
+          <ColorPickerField
+            label="Background"
+            value={element?.outerStyle?.backgroundColor}
+            onHandleStyleChange={(newValue) =>
+              onHandleOuterStyleChange("backgroundColor", newValue)
+            }
+          />
+        )}
+        {element?.outerStyle?.justifyContent && (
+          <ToggleGroupField
+            label="Align"
+            value={element?.outerStyle?.justifyContent}
+            options={TextAlignOptions}
+            onHandleStyleChange={(newValue) =>
+              onHandleOuterStyleChange("justifyContent", newValue)
+            }
+          />
+        )}
+      </div>
     </div>
   );
 };

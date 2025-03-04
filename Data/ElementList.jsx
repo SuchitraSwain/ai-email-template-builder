@@ -62,7 +62,6 @@ export default [
     icon: Image,
     type: "Image",
     label: "Image",
-    content: "/image.png",
     imageUrl: "/image.png",
     alt: "Image",
     url: "#",
