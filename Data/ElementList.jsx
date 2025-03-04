@@ -28,7 +28,7 @@ export default [
       padding: "10px",
       width: "auto",
       fontSize: "16px",
-      borderRadius: "0px",
+      borderRadius: "4px",
       fontWeight: "normal",
       objectFit: "contain",
     },
@@ -43,6 +43,7 @@ export default [
     icon: TextSelectionIcon,
     type: "Text",
     label: "Text",
+    content: "Sample Text",
     textarea: "Sample Text",
     style: {
       backgroundColor: "#fff",
@@ -51,7 +52,7 @@ export default [
       textAlign: "center",
       fontSize: "22px",
       fontWeight: "normal",
-      textTransform: "uppercase", //lowercase , capitilized
+      textTransform: "uppercase",
     },
     outerStyle: {
       backgroundColor: "#fff",
@@ -62,6 +63,7 @@ export default [
     icon: Image,
     type: "Image",
     label: "Image",
+    content: "/image.png",
     imageUrl: "/image.png",
     alt: "Image",
     url: "#",
@@ -92,7 +94,7 @@ export default [
       backgroundColor: "#ffffff",
       padding: "10px",
       height: "30%",
-      width: "30%",
+      width: "70%",
     },
     outerStyle: {
       display: "flex",
