@@ -13,7 +13,7 @@ import LogoComponent from "../custom/Element/LogoComponent";
 import DividerComponent from "../custom/Element/DividerComponent";
 import LogoHeaderComponent from "../custom/Element/LogoHeaderComponent";
 import SocialIconComponent from "../custom/Element/SocialIconComponent";
-import { Trash } from "lucide-react";
+import { ArrowDown, ArrowUp, Trash } from "lucide-react";
 
 const ColumnLayout = ({ layout }) => {
   const [dragOver, setDragOver] = React.useState();
@@ -68,6 +68,35 @@ const ColumnLayout = ({ layout }) => {
     setEmailTemplate(updateEmailtemplate);
   };
 
+  const moveItemUp = (layoutId) => {
+    const index = emailTemplate?.findIndex((item) => item?.id === layoutId);
+    if (index > 0) {
+      setEmailTemplate((prevItems) => {
+        const updateItems = [...prevItems];
+        //swap the current item with the one above it
+        [updateItems[index], updateItems[index - 1]] = [
+          updateItems[index - 1],
+          updateItems[index],
+        ];
+        return updateItems;
+      });
+    }
+  };
+
+  const moveItemDown = (layoutId) => {
+    const index = emailTemplate?.findIndex((item) => item?.id === layoutId);
+    if (index < emailTemplate.length - 1) {
+      setEmailTemplate((prevItems) => {
+        const updateItems = [...prevItems];
+        [updateItems[index], updateItems[index + 1]] = [
+          updateItems[index + 1],
+          updateItems[index],
+        ];
+        return updateItems;
+      });
+    }
+  };
+
   return (
     <div className="relative">
       <div
@@ -95,12 +124,28 @@ const ColumnLayout = ({ layout }) => {
         ))}
 
         {selectedElement?.layout?.id === layout?.id && (
-          <div
-            className="absolute -right-10 bg-gray-100 p-2 rounded-full 
+          <div className="absolute -right-10 flex gap-2 flex-col">
+            <div
+              className=" bg-gray-100 p-2 rounded-full 
           cursor-pointer hover:scale-105 transition-all hover:shadow-md"
-            onClick={() => deleteLayout(layout?.id)}
-          >
-            <Trash className="h-4 w-4 text-rose-500" />
+              onClick={() => deleteLayout(layout?.id)}
+            >
+              <Trash className="h-4 w-4 text-rose-500" />
+            </div>
+            <div
+              className=" bg-gray-100 p-2 rounded-full 
+          cursor-pointer hover:scale-105 transition-all hover:shadow-md"
+              onClick={() => moveItemUp(layout?.id)}
+            >
+              <ArrowUp className="h-4 w-4" />
+            </div>
+            <div
+              className=" bg-gray-100 p-2 rounded-full 
+          cursor-pointer hover:scale-105 transition-all hover:shadow-md"
+              onClick={() => moveItemDown(layout?.id)}
+            >
+              <ArrowDown className="h-4 w-4" />
+            </div>
           </div>
         )}
       </div>
