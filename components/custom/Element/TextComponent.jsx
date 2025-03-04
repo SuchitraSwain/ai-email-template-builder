@@ -1,7 +1,7 @@
 import React from "react";
 
-const TextComponent = ({ style, content }) => {
-  return <h2 style={style}>{content}</h2>;
+const TextComponent = ({ style, textarea }) => {
+  return <h2 style={style}>{textarea}</h2>;
 };
 
 export default TextComponent;

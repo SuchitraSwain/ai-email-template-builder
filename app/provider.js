@@ -43,8 +43,7 @@ const Provider = ({ children }) => {
     if (selectedElement) {
       let updatedEmailTemplate = [];
       emailTemplate.forEach((item, index) => {
-        console.log("item", item);
-        if (item?.[index].id === selectedElement?.layout?.id) {
+        if (item?.id === selectedElement?.layout?.id) {
           updatedEmailTemplate?.push(selectedElement?.layout);
         } else {
           updatedEmailTemplate?.push(item);
@@ -53,8 +52,6 @@ const Provider = ({ children }) => {
       setEmailTemplate(updatedEmailTemplate);
     }
   }, [selectedElement]);
-
-  console.log("emailTemplate", emailTemplate);
 
   const userDetailValue = useMemo(
     () => ({ userDetail, setUserDetail }),
