@@ -13,6 +13,7 @@ import LogoComponent from "../custom/Element/LogoComponent";
 import DividerComponent from "../custom/Element/DividerComponent";
 import LogoHeaderComponent from "../custom/Element/LogoHeaderComponent";
 import SocialIconComponent from "../custom/Element/SocialIconComponent";
+import { Trash } from "lucide-react";
 
 const ColumnLayout = ({ layout }) => {
   const [dragOver, setDragOver] = React.useState();
@@ -60,14 +61,22 @@ const ColumnLayout = ({ layout }) => {
     return element?.type;
   };
 
+  const deleteLayout = (layoutId) => {
+    const updateEmailtemplate = emailTemplate?.filter(
+      (item) => item?.id !== layoutId
+    );
+    setEmailTemplate(updateEmailtemplate);
+  };
+
   return (
-    <div>
+    <div className="relative">
       <div
         style={{
           display: "grid",
           gridTemplateColumns: `repeat(${layout?.numOfCol}, 1fr)`,
           gap: "0px",
         }}
+        className={`${selectedElement?.layout?.id === layout?.id ? "border border-dashed border-blue-500" : ""}`}
       >
         {Array.from({ length: layout?.numOfCol }).map((_, index) => (
           <div
@@ -75,7 +84,7 @@ const ColumnLayout = ({ layout }) => {
             className={`p-0 flex items-center justify-center cursor-pointer
               ${!layout?.[index]?.type && "bg-gray-100 border border-dashed"} 
               ${index === dragOver?.index && dragOver?.columnId ? "bg-green-100" : ""}
-              ${selectedElement?.layout?.id === layout?.id && selectedElement?.index === index ? "border-2 border-blue-500" : ""}
+              ${selectedElement?.layout?.id === layout?.id && selectedElement?.index === index ? "border-3 border-blue-500" : ""}
             `}
             onDragOver={(event) => onDragOverHandler(event, index)}
             onDrop={onDropHandler}
@@ -84,6 +93,16 @@ const ColumnLayout = ({ layout }) => {
             {getElementComponent(layout?.[index]) ?? "Drag Element Here"}
           </div>
         ))}
+
+        {selectedElement?.layout?.id === layout?.id && (
+          <div
+            className="absolute -right-10 bg-gray-100 p-2 rounded-full 
+          cursor-pointer hover:scale-105 transition-all hover:shadow-md"
+            onClick={() => deleteLayout(layout?.id)}
+          >
+            <Trash className="h-4 w-4 text-rose-500" />
+          </div>
+        )}
       </div>
     </div>
   );
