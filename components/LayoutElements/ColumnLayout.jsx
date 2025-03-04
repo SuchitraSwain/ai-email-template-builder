@@ -72,7 +72,7 @@ const ColumnLayout = ({ layout }) => {
         {Array.from({ length: layout?.numOfCol }).map((_, index) => (
           <div
             key={index}
-            className={`p-2 flex items-center justify-center cursor-pointer
+            className={`p-0 flex items-center justify-center cursor-pointer
               ${!layout?.[index]?.type && "bg-gray-100 border border-dashed"} 
               ${index === dragOver?.index && dragOver?.columnId ? "bg-green-100" : ""}
               ${selectedElement?.layout?.id === layout?.id && selectedElement?.index === index ? "border-2 border-blue-500" : ""}

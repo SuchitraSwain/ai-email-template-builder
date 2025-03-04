@@ -7,6 +7,46 @@ import ColorPickerField from "./Settings/ColorPickerField";
 import InputStyleField from "./Settings/InputStyleField";
 import SliderField from "./Settings/SliderField";
 import TextAreaField from "./Settings/TextAreaField";
+import ToggleGroupField from "./Settings/ToggleGroupField";
+import {
+  AArrowUp,
+  AlignCenter,
+  AlignLeft,
+  AlignRight,
+  CaseLower,
+  CaseUpper,
+} from "lucide-react";
+import DropdownField from "./Settings/DropdownField";
+
+const TextAlignOptions = [
+  {
+    value: "left",
+    icon: AlignLeft,
+  },
+  {
+    value: "center",
+    icon: AlignCenter,
+  },
+  {
+    value: "right",
+    icon: AlignRight,
+  },
+];
+
+const TextTransformOptions = [
+  {
+    value: "uppercase",
+    icon: CaseUpper,
+  },
+  {
+    value: "lowercase",
+    icon: CaseLower,
+  },
+  {
+    value: "capitalize",
+    icon: AArrowUp,
+  },
+];
 
 const Settings = () => {
   const { selectedElement, setSelectedElement } = useSelectedElement();
@@ -89,6 +129,18 @@ const Settings = () => {
           }
         />
       )}
+
+      {element?.style?.textAlign && (
+        <ToggleGroupField
+          label={"Textalign"}
+          value={element?.style?.textAlign}
+          options={TextAlignOptions}
+          onHandleStyleChange={(newValue) =>
+            onHandleStyleChange("textAlign", newValue)
+          }
+        />
+      )}
+
       {element?.style?.backgroundColor && (
         <ColorPickerField
           label="Background"
@@ -117,6 +169,17 @@ const Settings = () => {
         />
       )}
 
+      {element?.style?.textTransform && (
+        <ToggleGroupField
+          label={"Text Transform"}
+          value={element?.style?.textTransform}
+          options={TextTransformOptions}
+          onHandleStyleChange={(newValue) =>
+            onHandleStyleChange("textTransform", newValue)
+          }
+        />
+      )}
+
       {element?.style?.padding && (
         <InputStyleField
           label="Padding"
@@ -133,6 +196,31 @@ const Settings = () => {
           value={element?.style?.borderRadius}
           onHandleStyleChange={(newValue) =>
             onHandleStyleChange("borderRadius", newValue)
+          }
+        />
+      )}
+
+      {element?.style?.fontWeight && (
+        <DropdownField
+          label={"Font Weight"}
+          value={element?.style?.fontWeight}
+          options={[
+            "normal",
+            "bold",
+            "lighter",
+            "bolder",
+            "100",
+            "200",
+            "300",
+            "400",
+            "500",
+            "600",
+            "700",
+            "800",
+            "900",
+          ]}
+          onHandleStyleChange={(newValue) =>
+            onHandleStyleChange("fontWeight", newValue)
           }
         />
       )}
