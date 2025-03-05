@@ -21,7 +21,7 @@ const Provider = ({ children }) => {
   const [emailTemplate, setEmailTemplate] = useState([]);
   const [selectedElement, setSelectedElement] = useState(null);
 
-  // Handle localStorage read and write efficiently
+  // Load data from localStorage efficiently
   useEffect(() => {
     if (typeof window !== "undefined") {
       const storedUserDetail = JSON.parse(localStorage.getItem("userDetail"));
@@ -29,7 +29,7 @@ const Provider = ({ children }) => {
         JSON.parse(localStorage.getItem("emailTemplate")) || [];
 
       if (storedUserDetail?.email) setUserDetail(storedUserDetail);
-      setEmailTemplate(storedEmailTemplate);
+      setEmailTemplate(storedEmailTemplate.filter(Boolean)); // Remove null values
     }
   }, []);
 
@@ -39,17 +39,16 @@ const Provider = ({ children }) => {
     }
   }, [emailTemplate]);
 
+  // Ensure selectedElement updates the email template correctly
   useEffect(() => {
     if (selectedElement) {
-      let updatedEmailTemplate = [];
-      emailTemplate.forEach((item, index) => {
-        if (item?.id === selectedElement?.layout?.id) {
-          updatedEmailTemplate?.push(selectedElement?.layout);
-        } else {
-          updatedEmailTemplate?.push(item);
-        }
+      setEmailTemplate((prevTemplate) => {
+        return prevTemplate.map((item) =>
+          item?.id === selectedElement?.layout?.id
+            ? selectedElement?.layout
+            : item
+        );
       });
-      setEmailTemplate(updatedEmailTemplate);
     }
   }, [selectedElement]);
 

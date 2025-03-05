@@ -30,15 +30,20 @@ const ColumnLayout = ({ layout }) => {
   };
 
   const onDropHandler = () => {
-    const index = dragOver.index;
+    if (!dragLayoutElement?.dragElement) return;
 
-    setEmailTemplate((prevItem) =>
-      prevItem?.map((col) =>
-        col?.id === layout?.id
-          ? { ...col, [index]: dragLayoutElement?.dragElement }
-          : col
-      )
+    setEmailTemplate((prevTemplate) =>
+      prevTemplate.map((col) => {
+        if (col?.id === layout?.id) {
+          return {
+            ...col,
+            [dragOver.index]: { ...dragLayoutElement?.dragElement },
+          };
+        }
+        return col;
+      })
     );
+
     setDragOver(null);
   };
 
