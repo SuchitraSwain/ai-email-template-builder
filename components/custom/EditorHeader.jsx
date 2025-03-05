@@ -6,7 +6,7 @@ import { Button } from "../ui/button";
 import { Code, Monitor, Smartphone } from "lucide-react";
 import { useScreenSize } from "@/app/provider";
 
-const EditorHeader = () => {
+const EditorHeader = ({ viewHTMLCode }) => {
   const { screenSize, setScreenSize } = useScreenSize();
   return (
     <div className="p-4 shadow-sm flex justify-between items-center">
@@ -28,7 +28,11 @@ const EditorHeader = () => {
         </Button>
       </div>
       <div className="flex gap-3">
-        <Button variant="ghost" className="hover:text-primary">
+        <Button
+          variant="ghost"
+          className="hover:text-primary"
+          onClick={() => viewHTMLCode(true)}
+        >
           <Code />
         </Button>
         <Button variant="outline">Sent Test Email</Button>
