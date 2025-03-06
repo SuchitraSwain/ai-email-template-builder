@@ -2,7 +2,6 @@
 
 import { useUserDetail } from "@/app/provider";
 import EmailTemplateList from "@/components/custom/EmailTemplateList";
-import Header from "@/components/custom/Header";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import React, { use } from "react";
