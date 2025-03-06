@@ -3,7 +3,7 @@
 import { useEmailTemplate, useUserDetail } from "@/app/provider";
 import Canvas from "@/components/custom/Canvas";
 import EditorHeader from "@/components/custom/EditorHeader";
-import ElementsSidebar from "@/components/custom/ElementsSIdebar";
+import ElementsSidebar from "@/components/custom/ElementsSidebar";
 import Settings from "@/components/custom/Settings";
 import { api } from "@/convex/_generated/api";
 import { useConvex } from "convex/react";
