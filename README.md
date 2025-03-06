@@ -6,7 +6,7 @@ This project is an AI-powered email template builder built using **Next.js, Reac
 
 ## Features
 
-- AI-powered email template generation
+- AI-powered email template generation (via Google AI Studio)
 - Drag-and-drop email editor
 - Authentication via Google OAuth
 - Data management using Convex
