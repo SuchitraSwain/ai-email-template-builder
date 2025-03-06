@@ -32,7 +32,7 @@ const SignInButton = () => {
 
       if (typeof window !== "undefined") {
         window.localStorage.setItem("userDetail", JSON.stringify(userDetail));
-        // window.location.href = "/dashboard";
+        window.location.href = "/dashboard";
       }
     },
     onError: (errorResponse) => console.log(errorResponse),

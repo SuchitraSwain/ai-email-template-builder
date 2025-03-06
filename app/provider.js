@@ -29,7 +29,7 @@ const Provider = ({ children }) => {
         JSON.parse(localStorage.getItem("emailTemplate")) || [];
 
       if (storedUserDetail?.email) setUserDetail(storedUserDetail);
-      setEmailTemplate(storedEmailTemplate.filter(Boolean)); // Remove null values
+      setEmailTemplate(storedEmailTemplate.filter(Boolean));
     }
   }, []);
 
@@ -43,7 +43,7 @@ const Provider = ({ children }) => {
   useEffect(() => {
     if (selectedElement) {
       setEmailTemplate((prevTemplate) => {
-        return prevTemplate.map((item) =>
+        return prevTemplate?.map((item) =>
           item?.id === selectedElement?.layout?.id
             ? selectedElement?.layout
             : item

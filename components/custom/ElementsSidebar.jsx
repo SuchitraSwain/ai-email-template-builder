@@ -44,7 +44,7 @@ const ElementsSidebar = () => {
 
       <h2 className="font-bold text-lg mb-4 mt-6">Element</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-3">
-        {ElementList.map((element, index) => (
+        {ElementList?.map((element, index) => (
           <div
             key={index}
             draggable

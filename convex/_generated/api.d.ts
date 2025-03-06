@@ -13,6 +13,7 @@ import type {
   FilterApi,
   FunctionReference,
 } from "convex/server";
+import type * as emailTemplates from "../emailTemplates.js";
 import type * as users from "../users.js";
 
 /**
@@ -24,6 +25,7 @@ import type * as users from "../users.js";
  * ```
  */
 declare const fullApi: ApiFromModules<{
+  emailTemplates: typeof emailTemplates;
   users: typeof users;
 }>;
 export declare const api: FilterApi<

@@ -33,7 +33,7 @@ const ColumnLayout = ({ layout }) => {
     if (!dragLayoutElement?.dragElement) return;
 
     setEmailTemplate((prevTemplate) =>
-      prevTemplate.map((col) => {
+      prevTemplate?.map((col) => {
         if (col?.id === layout?.id) {
           return {
             ...col,

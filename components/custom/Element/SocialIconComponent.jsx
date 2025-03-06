@@ -3,7 +3,7 @@ import React from "react";
 const SocialIconComponent = ({ outerStyle, iconStyle, socialIcons }) => {
   return (
     <div style={outerStyle}>
-      {socialIcons.map((social, index) => (
+      {socialIcons?.map((social, index) => (
         <a
           key={index}
           href={social.url}
