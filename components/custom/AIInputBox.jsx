@@ -33,6 +33,7 @@ const AIInputBox = () => {
         tid: tid,
         design: result.data,
         email: userDetail.email,
+        description: userInput,
       });
       // Navigate user to editor screen
 

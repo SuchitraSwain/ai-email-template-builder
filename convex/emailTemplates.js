@@ -6,6 +6,7 @@ export const SaveTemplates = mutation({
     tid: v.string(),
     design: v.any(),
     email: v.string(),
+    description: v.any(),
   },
   handler: async (ctx, args) => {
     try {
@@ -13,6 +14,7 @@ export const SaveTemplates = mutation({
         tid: args.tid,
         design: args.design,
         email: args.email,
+        description: args.description,
       });
       return result;
     } catch (e) {
@@ -39,6 +41,30 @@ export const GetTemplatesDesign = query({
         )
         .collect();
 
+      return result[0];
+    } catch (e) {
+      console.error("Error fetching templates:", e);
+      throw new Error("Failed to fetch templates");
+    }
+  },
+});
+
+export const UpdateTemplateDesign = mutation({
+  args: {
+    tid: v.string(),
+    design: v.any(),
+  },
+  handler: async (ctx, args) => {
+    try {
+      const result = await ctx.db
+        .query("emailTemplates")
+        .filter((q) => q.eq(q.field("tid"), args.tid))
+        .collect();
+
+      const docId = result[0]._id;
+      await ctx.db.patch(docId, {
+        design: args.design,
+      });
       return result[0];
     } catch (e) {
       console.error("Error fetching templates:", e);
