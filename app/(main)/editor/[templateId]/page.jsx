@@ -32,7 +32,7 @@ const Editor = () => {
       tid: templateId,
       email: userDetail.email,
     });
-    setEmailTemplate(result?.design);
+    setEmailTemplate(result?.design || []);
     setLoading(false);
   };
 

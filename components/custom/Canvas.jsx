@@ -30,8 +30,12 @@ const Canvas = ({ viewHTMLCode, closeDialog }) => {
     e.preventDefault();
     setDragOver(false);
 
-    if (dragLayoutElement) {
-      setEmailTemplate((prev) => [...prev, dragLayoutElement?.dragLayout]);
+    if (dragLayoutElement && dragLayoutElement.dragLayout) {
+      setEmailTemplate((prev) => {
+        const filteredPrev = prev.filter(Boolean);
+
+        return [...filteredPrev, dragLayoutElement.dragLayout];
+      });
     }
   };
 

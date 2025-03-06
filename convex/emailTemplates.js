@@ -41,7 +41,7 @@ export const GetTemplatesDesign = query({
         )
         .collect();
 
-      return result[0];
+      return result.length > 0 ? result[0] : null;
     } catch (e) {
       console.error("Error fetching templates:", e);
       throw new Error("Failed to fetch templates");
